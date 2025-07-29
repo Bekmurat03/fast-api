@@ -1,0 +1,5 @@
+.env
+venv
+static/
+create_admin.py
+requirements.txt

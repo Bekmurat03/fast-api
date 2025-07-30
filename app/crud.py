@@ -463,4 +463,8 @@ def update_banner(db: Session, db_banner: models.Banner, banner_in: schemas.Bann
         db_banner.image_url = image_url
     db.commit()
     db.refresh(db_banner)
-    return db_banner
+    return 
+def get_pending_payout_requests(db: Session):
+    return db.query(models.PayoutRequest).filter(models.PayoutRequest.status == "pending").all()
+def get_user_by_phone(db: Session, phone: str):
+    return db.query(models.User).filter(models.User.phone == phone).first()

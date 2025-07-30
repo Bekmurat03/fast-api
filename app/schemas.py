@@ -63,11 +63,13 @@ class AdminUserCreate(UserBase):
             raise ValueError('Администратор может создавать только аккаунты ресторанов или других администраторов.')
         return v
 
-class UserPublic(UserBase):
+class UserPublic(BaseModel):
     id: int
-    role: UserRole
+    phone: str
+    first_name: str
+    role: str
     is_active: bool
-    is_superuser: bool
+    
     class Config:
         from_attributes = True
 

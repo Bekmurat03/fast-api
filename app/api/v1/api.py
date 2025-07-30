@@ -1,7 +1,9 @@
 from fastapi import APIRouter
+
+ 
 from .endpoints import (
     auth, orders, payments, restaurants, couriers, admin,
-    client_restaurants, addresses, reviews, banners # <-- Добавлен banners
+    client_restaurants, addresses, reviews, banners, users # <-- Добавлен banners
 )
 
 api_router = APIRouter()
@@ -10,6 +12,7 @@ api_router = APIRouter()
 api_router.include_router(auth.router, prefix="/auth", tags=["Аутентификация"])
 api_router.include_router(client_restaurants.router, prefix="/restaurants", tags=["Клиент: Рестораны и Меню"])
 api_router.include_router(banners.router, prefix="/banners", tags=["Клиент: Баннеры"]) # <-- НОВЫЙ РОУТЕР
+api_router.include_router(users.router, prefix="/users", tags=["users"])  # Новый роутер
 
 # --- Эндпоинты для аутентифицированных пользователей (клиентов) ---
 api_router.include_router(orders.router, prefix="/orders", tags=["Клиент: Заказы"])
